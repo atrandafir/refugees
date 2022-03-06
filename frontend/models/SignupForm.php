@@ -14,6 +14,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $lang;
 
 
     /**
@@ -35,6 +36,17 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
+            
+            ['lang', 'safe'],
+        ];
+    }
+    
+    public function attributeLabels(): array {
+        return [
+            'username'=>Yii::t('front.signup', 'Username'),
+            'email'=>Yii::t('front.signup', 'Email'),
+            'password'=>Yii::t('front.signup', 'Password'),
+            'lang'=>Yii::t('front.signup', 'Language'),
         ];
     }
 

@@ -10,6 +10,8 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 
+use common\helpers\LanguageHelper;
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -49,6 +51,9 @@ AppAsset::register($this);
             . Html::endForm()
             . '</li>';
     }
+    
+    $menuItems[] = ['label' => 'Language', 'items' => LanguageHelper::languageLinksForNav()];
+    
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => $menuItems,
