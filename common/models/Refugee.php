@@ -9,6 +9,7 @@ use yii\behaviors\TimestampBehavior;
  * This is the model class for table "refugee".
  *
  * @property int $id
+ * @property int|null $user_id
  * @property string $name
  * @property string $phone
  * @property string $document_number
@@ -25,6 +26,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property HouseGuest[] $houseGuests
  * @property TripPassenger[] $tripPassengers
+ * @property User $user
  */
 class Refugee extends \yii\db\ActiveRecord
 {
@@ -59,6 +61,7 @@ class Refugee extends \yii\db\ActiveRecord
             [['phone'], 'string', 'max' => 32],
             [['document_number'], 'string', 'max' => 64],
             [['lang'], 'string', 'max' => 5],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -68,7 +71,7 @@ class Refugee extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('common.models.refugee', 'ID'),
+            'user_id' => Yii::t('common.models.refugee', 'User'),
             'name' => Yii::t('common.models.refugee', 'Name'),
             'phone' => Yii::t('common.models.refugee', 'Phone'),
             'document_number' => Yii::t('common.models.refugee', 'Document Number'),
@@ -103,6 +106,16 @@ class Refugee extends \yii\db\ActiveRecord
     public function getTripPassengers()
     {
         return $this->hasMany(TripPassenger::className(), ['refugee_id' => 'id']);
+    }
+    
+    /**
+     * Gets query for [[User]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
     
     const GENDER_MALE=1;

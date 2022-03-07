@@ -7,27 +7,27 @@ use backend\models\UserSearch;
 use common\components\MultiLingualController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * UserController implements the CRUD actions for User model.
  */
-class UserController extends MultiLingualController
-{
+class UserController extends MultiLingualController {
+
     /**
      * @inheritDoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+                parent::behaviors(),
+                [
+                    'verbs' => [
+                        'class' => VerbFilter::className(),
+                        'actions' => [
+                            'delete' => ['POST'],
+                        ],
                     ],
-                ],
-            ]
+                ]
         );
     }
 
@@ -36,14 +36,13 @@ class UserController extends MultiLingualController
      *
      * @return string
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -53,10 +52,9 @@ class UserController extends MultiLingualController
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -65,8 +63,7 @@ class UserController extends MultiLingualController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new User();
 
         if ($this->request->isPost) {
@@ -78,7 +75,7 @@ class UserController extends MultiLingualController
         }
 
         return $this->render('create', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -89,8 +86,7 @@ class UserController extends MultiLingualController
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -98,7 +94,7 @@ class UserController extends MultiLingualController
         }
 
         return $this->render('update', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -109,8 +105,7 @@ class UserController extends MultiLingualController
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -123,12 +118,46 @@ class UserController extends MultiLingualController
      * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = User::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException(Yii::t('back.user', 'The requested page does not exist.'));
     }
+
+    public function actionSelect2($term = null, $prefix = null) {
+        $result = [];
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $query = User::find()
+                ->where([
+        ]);
+
+        if (!empty($term)) {
+            $query->andWhere('(email LIKE :term)', [
+                'term' => "%$term%",
+            ]);
+        }
+
+        $query->limit(100);
+
+        $models = $query->orderBy(['id' => SORT_ASC])
+                ->all();
+        
+        $result[] = [
+            'id' => '',
+            'text' => '-',
+        ];
+
+        foreach ($models as $model) {
+            $result[] = [
+                'id' => $model->id,
+                'text' => $model->email,
+            ];
+        }
+
+        return $result;
+    }
+
 }

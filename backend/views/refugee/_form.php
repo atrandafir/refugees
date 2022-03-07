@@ -3,6 +3,19 @@
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 use common\models\Refugee;
+use common\models\User;
+use yii\helpers\Url;
+
+$user_id_options=[
+    ''=>'',
+];
+
+if ($model->user_id) {
+    $user=User::findOne($model->user_id);
+    if ($user) {
+        $user_id_options[$user->id]=$user->email;
+    }
+}
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Refugee */
@@ -12,6 +25,9 @@ use common\models\Refugee;
 <div class="refugee-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    
+    <?= $form->field($model, 'user_id')->dropDownList($user_id_options,['prompt'=>''])
+            ->hint(Yii::t('back.refugee', 'Link this refugee to an existing user account')) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -38,3 +54,28 @@ use common\models\Refugee;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script>
+    function refugee_init_form() {
+        $('#refugee-user_id').select2({
+            theme: 'bootstrap4',
+            ajax: {
+              url: '<?php echo Url::to(['/user/select2']) ?>',
+              dataType: 'json',
+              processResults: function (response) {
+                return {
+                    results: response
+                };
+              }
+            }
+        });
+    }
+</script>
+
+<?php
+$script = <<<JS
+refugee_init_form();
+JS;
+
+$this->registerJs($script); // Registro el script javascript en el view 
+?>

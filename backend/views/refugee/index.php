@@ -30,6 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
 //            ['class' => 'yii\grid\SerialColumn'],
 
 //            'id',
+            /*
+            [
+                'attribute' => 'user_id',
+                'format' => 'raw',
+                'value' => function(Refugee $model) {
+                    return $model->user?Html::encode($model->user->email):null;
+                }  
+            ],*/
             'name',
 //            'phone',
             'document_number',

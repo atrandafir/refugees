@@ -6,8 +6,20 @@ use yii\bootstrap4\ActiveForm;
 use yii\helpers\ArrayHelper;
 use common\models\User;
 use common\models\Vehicle;
+use yii\helpers\Url;
 
 use yii\jui\DatePicker;
+
+$coordinator_id_options=[
+    ''=>'',
+];
+
+if ($model->coordinator_id) {
+    $user=User::findOne($model->coordinator_id);
+    if ($user) {
+        $coordinator_id_options[$user->id]=$user->email;
+    }
+}
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Trip */
@@ -17,9 +29,10 @@ use yii\jui\DatePicker;
 <div class="trip-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'coordinator_id')->dropDownList(ArrayHelper::map(User::find()->all(), 'id', 'email'),['prompt'=>''])
+    
+    <?= $form->field($model, 'coordinator_id')->dropDownList($coordinator_id_options,[])
             ->hint(Yii::t('back.trip', 'Set the coordinator that will plan the trip details')) ?>
+    
     <?= $form->field($model, 'vehicle_id')->dropDownList(ArrayHelper::map(Vehicle::find()->all(), 'id', 'title'),['prompt'=>'']) ?>
 
     <?= $form->field($model, 'leaving_from')->textInput(['maxlength' => true]) ?>
@@ -50,3 +63,28 @@ use yii\jui\DatePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script>
+    function trip_init_form() {
+        $('#trip-coordinator_id').select2({
+            theme: 'bootstrap4',
+            ajax: {
+              url: '<?php echo Url::to(['/user/select2']) ?>',
+              dataType: 'json',
+              processResults: function (response) {
+                return {
+                    results: response
+                };
+              }
+            }
+        });
+    }
+</script>
+
+<?php
+$script = <<<JS
+trip_init_form();
+JS;
+
+$this->registerJs($script); // Registro el script javascript en el view 
+?>
