@@ -7,45 +7,48 @@ $this->title = Yii::$app->name;
 <div class="site-index">
 
     <div class="jumbotron text-center bg-transparent">
-        <h1 class="display-4">Congratulations!</h1>
+        <h1 class="display-4"><?php echo Yii::t('front.index', 'Welcome!'); ?></h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead"><?php echo Yii::t('front.index', 'Ukraine to Spain travel and accomodation coordination platform'); ?></p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
 
     <div class="body-content">
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h2><?php echo Yii::t('front.index', 'Refugees'); ?></h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                <p>
+                    <?php echo Yii::t('front.index', 'Are you a person that needs to leave Ukraine and come to Spain?'); ?>
+                    <?php echo Yii::t('front.index', 'If so, use the following link to add your details on the list.'); ?>
+                    <?php echo Yii::t('front.index', 'You can add both yourself and other family members.'); ?>
+                    <?php echo Yii::t('front.index', 'Once you\'re on the list, you\'ll be contacted by a coordinator for further information about your future house and upcoming trip.'); ?>
+                </p>
 
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/doc/"><?php echo Yii::t('front.index', 'Add me now'); ?> &raquo;</a></p>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h2><?php echo Yii::t('front.index', 'Hosts'); ?></h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                <p>
+                    <?php echo Yii::t('front.index', 'Do you have a house in Spain where you can host people coming from Ukraine?'); ?>
+                    <?php echo Yii::t('front.index', 'Tell us about the location and capacity of your house and when will it be available.'); ?>
+                    <?php echo Yii::t('front.index', 'We will get in touch with you to coordinate the people that will come and stay at your place.'); ?>
+                </p>
 
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/forum/"><?php echo Yii::t('front.index', 'Add my house'); ?> &raquo;</a></p>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h2><?php echo Yii::t('front.index', 'Drivers'); ?></h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                <p>
+                    <?php echo Yii::t('front.index', 'Do you own a car and are willing to make a trip to Ukraine and back to Spain?'); ?>
+                    <?php echo Yii::t('front.index', 'Tell us about your vehicle capacity.'); ?>
+                    <?php echo Yii::t('front.index', 'We will get in touch with you to plan together the trips details, pickup locations, passengers, etc.'); ?>
+                </p>
 
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/extensions/"><?php echo Yii::t('front.index', 'Add my vehicle'); ?> &raquo;</a></p>
             </div>
         </div>
 

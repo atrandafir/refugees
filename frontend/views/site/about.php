@@ -4,13 +4,17 @@
 
 use yii\helpers\Html;
 
-$this->title = 'About';
+$this->title = Yii::t('front.about', 'About');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>This is the About page. You may modify the following file to customize its content:</p>
+    <p>
+        <?php echo Yii::t('front.about', 'This platform is made by volunteers in order to provide a tool to better manage and coordinate vehicles, trips and houses for people that need to leave Ukraine and come to Spain.'); ?>
+    </p>
+    <p>
+        <?php echo Yii::t('front.about', 'The code of this website is open source and can be found at: '); ?> <a href="https://github.com/atrandafir/refugees">Github</a>
+    </p>
 
-    <code><?= __FILE__ ?></code>
 </div>
