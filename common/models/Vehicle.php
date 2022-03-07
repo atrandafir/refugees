@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "vehicle".
@@ -34,6 +35,16 @@ class Vehicle extends \yii\db\ActiveRecord
     {
         return 'vehicle';
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -58,18 +69,17 @@ class Vehicle extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('common.models.vehicle', 'ID'),
-            'user_id' => Yii::t('common.models.vehicle', 'User ID'),
+            'user_id' => Yii::t('common.models.vehicle', 'User'),
             'driver_name' => Yii::t('common.models.vehicle', 'Driver Name'),
             'driver_phone' => Yii::t('common.models.vehicle', 'Driver Phone'),
             'driver_document_number' => Yii::t('common.models.vehicle', 'Driver Document Number'),
             'brand_model' => Yii::t('common.models.vehicle', 'Brand Model'),
             'plate_number' => Yii::t('common.models.vehicle', 'Plate Number'),
             'capacity' => Yii::t('common.models.vehicle', 'Capacity'),
-            'im_available' => Yii::t('common.models.vehicle', 'Im Available'),
-            'current_trip_id' => Yii::t('common.models.vehicle', 'Current Trip ID'),
+            'im_available' => Yii::t('common.models.vehicle', 'I\'m Available'),
+            'current_trip_id' => Yii::t('common.models.vehicle', 'Current Trip'),
             'current_location' => Yii::t('common.models.vehicle', 'Current Location'),
-            'lang' => Yii::t('common.models.vehicle', 'Lang'),
+            'lang' => Yii::t('common.models.vehicle', 'Language'),
             'created_at' => Yii::t('common.models.vehicle', 'Created At'),
             'updated_at' => Yii::t('common.models.vehicle', 'Updated At'),
         ];
@@ -93,5 +103,9 @@ class Vehicle extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    
+    public function getTitle() {
+        return $this->driver_name . " - " . $this->brand_model;
     }
 }

@@ -2,11 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\Vehicle;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Vehicle */
 
-$this->title = $model->id;
+$this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back.vehicle', 'Vehicles'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -30,7 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'user_id',
+            [
+                'attribute' => 'user_id',
+                'format' => 'raw',
+                'value' => function(Vehicle $model) {
+                    return $model->user?Html::encode($model->user->email):null;
+                }  
+            ],
             'driver_name',
             'driver_phone',
             'driver_document_number',
@@ -41,8 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'current_trip_id',
             'current_location',
             'lang',
-            'created_at',
-            'updated_at',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 

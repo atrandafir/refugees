@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use common\models\Vehicle;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\VehicleSearch */
@@ -26,22 +27,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+//            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'user_id',
+//            'id',
+            
+            [
+                'attribute' => 'user_id',
+                'format' => 'raw',
+                'value' => function(Vehicle $model) {
+                    return $model->user?Html::encode($model->user->email):null;
+                }  
+            ],
+            
             'driver_name',
-            'driver_phone',
-            'driver_document_number',
-            //'brand_model',
-            //'plate_number',
-            //'capacity',
-            //'im_available',
-            //'current_trip_id',
-            //'current_location',
-            //'lang',
-            //'created_at',
-            //'updated_at',
+//            'driver_phone',
+//            'driver_document_number',
+            'brand_model',
+            'plate_number',
+            'capacity',
+            'im_available',
+            'current_trip_id',
+//            'current_location',
+//            'lang',
+            'created_at:datetime',
+//            'updated_at:datetime',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Vehicle $model, $key, $index, $column) {
