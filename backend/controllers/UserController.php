@@ -123,7 +123,7 @@ class UserController extends MultiLingualController {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('back.user', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('back.general', 'The requested page does not exist.'));
     }
 
     public function actionSelect2($term = null, $prefix = null) {

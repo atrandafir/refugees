@@ -16,6 +16,10 @@ $this->title = $title." - ".Yii::$app->name;
 
 <h1><?php echo Html::encode($title); ?></h1>
 
+<p>
+    <?php echo Html::a(Yii::t('back.translation', 'Back to categories'), ['categories','language'=>$language]); ?>
+</p>
+
 <?php echo Html::beginForm(); ?>
 
 

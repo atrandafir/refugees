@@ -10,7 +10,7 @@ $this->title = Yii::t('back.vehicle', 'Update Vehicle: {name}', [
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back.vehicle', 'Vehicles'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('back.vehicle', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('back.general', 'Update');
 ?>
 <div class="vehicle-update">
 

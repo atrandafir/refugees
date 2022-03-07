@@ -129,6 +129,6 @@ class TripController extends MultiLingualController
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('back.trip', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('back.general', 'The requested page does not exist.'));
     }
 }

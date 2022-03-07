@@ -59,7 +59,7 @@ if ($model->coordinator_id) {
     ])->hint(Yii::t('back.trip', 'Expected date of arrival at the destination town in Spain')) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('back.trip', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('back.general', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

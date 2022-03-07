@@ -10,7 +10,7 @@ $this->title = Yii::t('back.trip', 'Update Trip: {name}', [
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back.trip', 'Trips'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('back.trip', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('back.general', 'Update');
 ?>
 <div class="trip-update">
 

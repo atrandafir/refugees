@@ -10,7 +10,7 @@ $this->title = Yii::t('back.refugee', 'Update Refugee: {name}', [
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back.refugee', 'Refugees'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('back.refugee', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('back.general', 'Update');
 ?>
 <div class="refugee-update">
 

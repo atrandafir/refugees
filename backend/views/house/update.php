@@ -10,7 +10,7 @@ $this->title = Yii::t('back.house', 'Update House: {name}', [
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back.house', 'Houses'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('back.house', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('back.general', 'Update');
 ?>
 <div class="house-update">
 

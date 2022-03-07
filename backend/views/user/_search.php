@@ -38,8 +38,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'lang') ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('back.user', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('back.user', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton(Yii::t('back.general', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('back.general', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

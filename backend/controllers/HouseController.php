@@ -129,6 +129,6 @@ class HouseController extends MultiLingualController
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('back.house', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('back.general', 'The requested page does not exist.'));
     }
 }

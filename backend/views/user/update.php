@@ -10,7 +10,7 @@ $this->title = Yii::t('back.user', 'Update User: {name}', [
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back.user', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('back.user', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('back.general', 'Update');
 ?>
 <div class="user-update">
 

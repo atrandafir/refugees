@@ -51,7 +51,7 @@ if ($model->user_id) {
     <?= $form->field($model, 'lang')->dropDownList(Yii::$app->params['languages'], ['prompt'=>''])->hint(Yii::t('back.vehicle', 'Chose the driver\'s preferred language for communications.')) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('back.vehicle', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('back.general', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

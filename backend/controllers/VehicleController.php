@@ -129,6 +129,6 @@ class VehicleController extends MultiLingualController
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('back.vehicle', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('back.general', 'The requested page does not exist.'));
     }
 }
