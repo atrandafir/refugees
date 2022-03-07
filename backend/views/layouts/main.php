@@ -38,6 +38,13 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => Yii::t('back.menu', 'Home'), 'url' => ['/site/index']],
+        
+        ['label' => Yii::t('back.menu', 'Vehicles'), 'url' => ['/vehicle/index']],
+        ['label' => Yii::t('back.menu', 'Refugees'), 'url' => ['/refugee/index']],
+        ['label' => Yii::t('back.menu', 'Houses'), 'url' => ['/house/index']],
+        ['label' => Yii::t('back.menu', 'Trips'), 'url' => ['/trip/index']],
+        ['label' => Yii::t('back.menu', 'Users'), 'url' => ['/user/index']],
+        
         ['label' => Yii::t('back.menu', 'Translations'), 'url' => ['/translation/languages']],
     ];
     if (Yii::$app->user->isGuest) {
