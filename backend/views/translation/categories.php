@@ -17,6 +17,10 @@ $this->title = $title." - ".Yii::$app->name;
 <h1><?php echo Html::encode($title); ?></h1>
 
 <p>
+    <?php echo Html::a(Yii::t('back.translation', 'Back to languages'), ['languages']); ?>
+</p>
+
+<p>
     <?php echo Yii::t('back.translation', 'Please choose a category from the list: '); ?>
 </p>
 
