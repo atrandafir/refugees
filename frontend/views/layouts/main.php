@@ -40,8 +40,6 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => Yii::t('front.menu', 'Home'), 'url' => ['/site/index']],
-        ['label' => Yii::t('front.menu', 'About'), 'url' => ['/site/about']],
-        ['label' => Yii::t('front.menu', 'Contact'), 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => Yii::t('front.menu', 'Signup'), 'url' => ['/site/signup']];
@@ -79,7 +77,11 @@ AppAsset::register($this);
 
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
-        <p class="float-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+        <p class="float-left">
+            &copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?>
+            &middot; <?php echo Html::a(Yii::t('front.menu', 'About'), ['/site/about']); ?>
+            &middot; <?php echo Html::a(Yii::t('front.menu', 'Contact'), ['/site/contact']); ?>
+        </p>
         <p class="float-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
