@@ -31,6 +31,14 @@ class LoginForm extends Model
             ['password', 'validatePassword'],
         ];
     }
+    
+    public function attributeLabels(): array {
+        return [
+            'username'=>Yii::t('front.login', 'Username'),
+            'password'=>Yii::t('front.login', 'Password'),
+            'rememberMe'=>Yii::t('front.login', 'Remember me'),
+        ];
+    }
 
     /**
      * Validates the password.
@@ -44,7 +52,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, Yii::t('front.login', 'Incorrect username or password.'));
             }
         }
     }
