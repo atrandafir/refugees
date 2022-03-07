@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "house".
@@ -34,6 +35,16 @@ class House extends \yii\db\ActiveRecord
     {
         return 'house';
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -58,8 +69,7 @@ class House extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('common.models.house', 'ID'),
-            'user_id' => Yii::t('common.models.house', 'User ID'),
+            'user_id' => Yii::t('common.models.house', 'User'),
             'host_name' => Yii::t('common.models.house', 'Host Name'),
             'host_phone' => Yii::t('common.models.house', 'Host Phone'),
             'host_document_number' => Yii::t('common.models.house', 'Host Document Number'),
@@ -69,7 +79,7 @@ class House extends \yii\db\ActiveRecord
             'capacity' => Yii::t('common.models.house', 'Capacity'),
             'rooms' => Yii::t('common.models.house', 'Rooms'),
             'availability_date' => Yii::t('common.models.house', 'Availability Date'),
-            'lang' => Yii::t('common.models.house', 'Lang'),
+            'lang' => Yii::t('common.models.house', 'Language'),
             'created_at' => Yii::t('common.models.house', 'Created At'),
             'updated_at' => Yii::t('common.models.house', 'Updated At'),
         ];
@@ -93,5 +103,9 @@ class House extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    
+    public function getTitle() {
+        return $this->host_name;
     }
 }

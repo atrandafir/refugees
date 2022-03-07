@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "refugee".
@@ -17,6 +18,8 @@ use Yii;
  * @property string $destination_location
  * @property string|null $special_needs
  * @property string|null $lang
+ * @property int|null $assigned_house_id
+ * @property int|null $assigned_trip_id
  * @property int|null $created_at
  * @property int|null $updated_at
  *
@@ -31,6 +34,16 @@ class Refugee extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'refugee';
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
     }
 
     /**
@@ -65,6 +78,8 @@ class Refugee extends \yii\db\ActiveRecord
             'destination_location' => Yii::t('common.models.refugee', 'Destination Location'),
             'special_needs' => Yii::t('common.models.refugee', 'Special Needs'),
             'lang' => Yii::t('common.models.refugee', 'Lang'),
+            'assigned_house_id' => Yii::t('common.models.refugee', 'House'),
+            'assigned_trip_id' => Yii::t('common.models.refugee', 'Trip'),
             'created_at' => Yii::t('common.models.refugee', 'Created At'),
             'updated_at' => Yii::t('common.models.refugee', 'Updated At'),
         ];
@@ -88,5 +103,25 @@ class Refugee extends \yii\db\ActiveRecord
     public function getTripPassengers()
     {
         return $this->hasMany(TripPassenger::className(), ['refugee_id' => 'id']);
+    }
+    
+    const GENDER_MALE=1;
+    const GENDER_FEMALE=0;
+    const GENDER_OTHER=2;
+    
+    static public function getGenderList() {
+        return [
+            self::GENDER_FEMALE=>'Female',
+            self::GENDER_MALE=>'Male',
+            self::GENDER_OTHER=>'Other',
+        ];
+    }
+    
+    public function getGenderLabel() {
+        $list=self::getGenderList();
+        if (isset($list[$this->gender])) {
+            return $list[$this->gender];
+        }
+        return $this->gender;
     }
 }

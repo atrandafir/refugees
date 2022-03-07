@@ -3,12 +3,14 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "trip".
  *
  * @property int $id
  * @property int|null $coordinator_id
+ * @property int|null $vehicle_id
  * @property string $leaving_from
  * @property string|null $current_location
  * @property string|null $pickup_arrival_date
@@ -17,6 +19,7 @@ use Yii;
  * @property int|null $updated_at
  *
  * @property User $coordinator
+ * @property Vehicle $vehicle
  * @property TripPassenger[] $tripPassengers
  * @property Vehicle[] $vehicles
  */
@@ -28,6 +31,16 @@ class Trip extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'trip';
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
     }
 
     /**
@@ -41,6 +54,7 @@ class Trip extends \yii\db\ActiveRecord
             [['pickup_arrival_date', 'destination_arrival_date'], 'safe'],
             [['leaving_from', 'current_location'], 'string', 'max' => 128],
             [['coordinator_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['coordinator_id' => 'id']],
+            [['vehicle_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vehicle::className(), 'targetAttribute' => ['vehicle_id' => 'id']],
         ];
     }
 
@@ -50,8 +64,9 @@ class Trip extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('common.models.trip', 'ID'),
-            'coordinator_id' => Yii::t('common.models.trip', 'Coordinator ID'),
+            'id' => 'ID',
+            'coordinator_id' => Yii::t('common.models.trip', 'Coordinator'),
+            'vehicle_id' => Yii::t('common.models.trip', 'Vehicle'),
             'leaving_from' => Yii::t('common.models.trip', 'Leaving From'),
             'current_location' => Yii::t('common.models.trip', 'Current Location'),
             'pickup_arrival_date' => Yii::t('common.models.trip', 'Pickup Arrival Date'),
@@ -69,6 +84,16 @@ class Trip extends \yii\db\ActiveRecord
     public function getCoordinator()
     {
         return $this->hasOne(User::className(), ['id' => 'coordinator_id']);
+    }
+
+    /**
+     * Gets query for [[Vehicle]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVehicle()
+    {
+        return $this->hasOne(Vehicle::className(), ['id' => 'vehicle_id']);
     }
 
     /**
