@@ -38,10 +38,13 @@ $this->title = $title." - ".Yii::$app->name;
                 <?php echo Html::encode($row['message']); ?>
             </td>
             <td>
-                <?php echo Html::textarea('translation['.$row['id'].']', $row['translation'], [
+                <?php echo Html::textarea('translation['.$row['id'].']', (isset($_POST['translation'][$row['id']])?$_POST['translation'][$row['id']]:$row['translation']), [
                     'style'=>'width:100%',
                     'class'=>'form-control',
                 ]); ?>
+                <?php if (isset($errors[$row['id']])): ?>
+                <p style="color: red;"><?php echo Html::encode($errors[$row['id']]); ?></p>
+                <?php endif; ?>
             </td>
         </tr>
         <?php endforeach; ?>
