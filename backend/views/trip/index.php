@@ -5,6 +5,8 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
+use common\models\Trip;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\TripSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -26,16 +28,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
-            'coordinator_id',
+            [
+                'attribute' => 'coordinator_id',
+                'format' => 'raw',
+                'value' => function(Trip $model) {
+                    return $model->coordinator?Html::encode($model->coordinator->email):null;
+                }
+            ],
+            [
+                'attribute' => 'vehicle_id',
+                'format' => 'raw',
+                'value' => function(Trip $model) {
+                    return $model->vehicle?Html::encode($model->vehicle->title):null;
+                }
+            ],
             'leaving_from',
             'current_location',
-            'pickup_arrival_date',
-            //'destination_arrival_date',
-            //'created_at',
-            //'updated_at',
+            'pickup_arrival_date:date',
+            'destination_arrival_date:date',
+//            'created_at:datetime',
+//            'updated_at:datetime',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Trip $model, $key, $index, $column) {

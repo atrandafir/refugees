@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use common\models\House;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\HouseSearch */
@@ -26,21 +27,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'user_id',
+            [
+                'attribute' => 'user_id',
+                'format' => 'raw',
+                'value' => function(House $model) {
+                    return $model->user?Html::encode($model->user->email):null;
+                }  
+            ],
             'host_name',
             'host_phone',
-            'host_document_number',
+            //'host_document_number',
             //'address',
-            //'city',
+            'city',
             //'postal_code',
-            //'capacity',
-            //'rooms',
-            //'availability_date',
-            //'lang',
-            //'created_at',
+            'rooms',
+            'capacity',
+            'availability_date:date',
+            'lang',
+            'created_at:datetime',
             //'updated_at',
             [
                 'class' => ActionColumn::className(),

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\Refugee;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Refugee */
@@ -34,13 +35,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'document_number',
             'age',
-            'gender',
+            [
+                'attribute'=>'gender',
+                'value' => function(Refugee $model) {
+                    return $model->genderLabel;
+                }
+            ],
             'pickup_location',
             'destination_location',
             'special_needs:ntext',
             'lang',
-            'created_at',
-            'updated_at',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 

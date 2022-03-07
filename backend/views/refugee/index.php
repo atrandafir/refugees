@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use common\models\Refugee;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\RefugeeSearch */
@@ -26,19 +27,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+//            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+//            'id',
             'name',
-            'phone',
+//            'phone',
             'document_number',
             'age',
-            //'gender',
-            //'pickup_location',
-            //'destination_location',
-            //'special_needs:ntext',
-            //'lang',
-            //'created_at',
+            [
+                'attribute'=>'gender',
+                'filter'=> Refugee::getGenderList(),
+                'value' => function(Refugee $model) {
+                    return $model->genderLabel;
+                }
+            ],
+            'pickup_location',
+            'destination_location',
+            'special_needs:ntext',
+            'lang',
+            'assigned_house_id',
+            'assigned_trip_id',
+            'created_at:datetime',
             //'updated_at',
             [
                 'class' => ActionColumn::className(),

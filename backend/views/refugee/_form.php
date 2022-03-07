@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap4\ActiveForm;
+use common\models\Refugee;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Refugee */
@@ -20,7 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'age')->textInput() ?>
 
-    <?= $form->field($model, 'gender')->textInput() ?>
+    <?= $form->field($model, 'gender')->dropDownList(Refugee::getGenderList(), ['prompt'=>'']) ?>
 
     <?= $form->field($model, 'pickup_location')->textInput(['maxlength' => true]) ?>
 
@@ -28,11 +29,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'special_needs')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'lang')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <?= $form->field($model, 'lang')->dropDownList(Yii::$app->params['languages'], ['prompt'=>''])->hint(Yii::t('back.vehicle', 'Chose the person\'s language for communications.')) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('back.refugee', 'Save'), ['class' => 'btn btn-success']) ?>

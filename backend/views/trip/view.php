@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+use common\models\Trip;
+
 /* @var $this yii\web\View */
 /* @var $model common\models\Trip */
 
@@ -30,13 +32,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'coordinator_id',
+            [
+                'attribute' => 'coordinator_id',
+                'format' => 'raw',
+                'value' => function(Trip $model) {
+                    return $model->coordinator?Html::encode($model->coordinator->email):null;
+                }  
+            ],
+            [
+                'attribute' => 'vehicle_id',
+                'format' => 'raw',
+                'value' => function(Trip $model) {
+                    return $model->vehicle?Html::encode($model->vehicle->title):null;
+                }
+            ],
             'leaving_from',
             'current_location',
-            'pickup_arrival_date',
-            'destination_arrival_date',
-            'created_at',
-            'updated_at',
+            'pickup_arrival_date:date',
+            'destination_arrival_date:date',
+//            'created_at',
+//            'updated_at',
         ],
     ]) ?>
 

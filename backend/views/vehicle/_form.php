@@ -15,7 +15,8 @@ use common\models\Trip;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'user_id')->dropDownList(ArrayHelper::map(User::find()->all(), 'id', 'email'),['prompt'=>''])->hint(Yii::t('back.vehicle', 'Link this vehicle to an existing user account')) ?>
+    <?= $form->field($model, 'user_id')->dropDownList(ArrayHelper::map(User::find()->all(), 'id', 'email'),['prompt'=>''])
+            ->hint(Yii::t('back.vehicle', 'Link this vehicle to an existing user account')) ?>
 
     <?= $form->field($model, 'driver_name')->textInput(['maxlength' => true]) ?>
 

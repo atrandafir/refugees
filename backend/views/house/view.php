@@ -2,11 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\House;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\House */
 
-$this->title = $model->id;
+$this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back.house', 'Houses'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -30,7 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'user_id',
+            [
+                'attribute' => 'user_id',
+                'format' => 'raw',
+                'value' => function(House $model) {
+                    return $model->user?Html::encode($model->user->email):null;
+                }  
+            ],
             'host_name',
             'host_phone',
             'host_document_number',
@@ -39,10 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'postal_code',
             'capacity',
             'rooms',
-            'availability_date',
+            'availability_date:date',
             'lang',
-            'created_at',
-            'updated_at',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 

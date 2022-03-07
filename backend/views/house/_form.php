@@ -1,7 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap4\ActiveForm;
+
+use yii\helpers\ArrayHelper;
+use common\models\User;
+
+use yii\jui\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\House */
@@ -12,7 +17,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+    <?= $form->field($model, 'user_id')->dropDownList(ArrayHelper::map(User::find()->all(), 'id', 'email'),['prompt'=>''])
+            ->hint(Yii::t('back.house', 'Link this house to an existing user account')) ?>
 
     <?= $form->field($model, 'host_name')->textInput(['maxlength' => true]) ?>
 
@@ -30,13 +36,18 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'rooms')->textInput() ?>
 
-    <?= $form->field($model, 'availability_date')->textInput() ?>
+    <?= $form->field($model, 'availability_date')->widget(DatePicker::className(),[
+        'dateFormat'=>'php:Y-m-d',
+        'options'=>[
+            'class'=>'form-control',
+        ],
+        'clientOptions' => [
+        
+        ]
+    ]) ?>
 
-    <?= $form->field($model, 'lang')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <?= $form->field($model, 'lang')->dropDownList(Yii::$app->params['languages'], ['prompt'=>''])->hint(Yii::t('back.house', 'Chose the host language for communications.')) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('back.house', 'Save'), ['class' => 'btn btn-success']) ?>
