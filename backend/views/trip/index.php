@@ -44,7 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'leaving_from',
-            'current_location',
+            'pickup_location',
+            'destination_location',
+            //'current_location',
             'pickup_arrival_date:date',
             'destination_arrival_date:date',
 //            'created_at:datetime',

@@ -13,6 +13,8 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $vehicle_id
  * @property string $leaving_from
  * @property string|null $current_location
+ * @property string|null $pickup_location
+ * @property string|null $destination_location
  * @property string|null $pickup_arrival_date
  * @property string|null $destination_arrival_date
  * @property int|null $created_at
@@ -52,7 +54,7 @@ class Trip extends \yii\db\ActiveRecord
             [['coordinator_id', 'created_at', 'updated_at'], 'integer'],
             [['leaving_from'], 'required'],
             [['pickup_arrival_date', 'destination_arrival_date'], 'safe'],
-            [['leaving_from', 'current_location'], 'string', 'max' => 128],
+            [['leaving_from', 'current_location','pickup_location','destination_location'], 'string', 'max' => 128],
             [['coordinator_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['coordinator_id' => 'id']],
             [['vehicle_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vehicle::className(), 'targetAttribute' => ['vehicle_id' => 'id']],
         ];
@@ -68,6 +70,8 @@ class Trip extends \yii\db\ActiveRecord
             'coordinator_id' => Yii::t('common.models.trip', 'Coordinator'),
             'vehicle_id' => Yii::t('common.models.trip', 'Vehicle'),
             'leaving_from' => Yii::t('common.models.trip', 'Leaving From'),
+            'pickup_location' => Yii::t('common.models.trip', 'Pickup Location'),
+            'destination_location' => Yii::t('common.models.trip', 'Destination Location'),
             'current_location' => Yii::t('common.models.trip', 'Current Location'),
             'pickup_arrival_date' => Yii::t('common.models.trip', 'Pickup Arrival Date'),
             'destination_arrival_date' => Yii::t('common.models.trip', 'Destination Arrival Date'),

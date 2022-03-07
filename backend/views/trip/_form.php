@@ -36,6 +36,8 @@ if ($model->coordinator_id) {
     <?= $form->field($model, 'vehicle_id')->dropDownList(ArrayHelper::map(Vehicle::find()->all(), 'id', 'title'),['prompt'=>'']) ?>
 
     <?= $form->field($model, 'leaving_from')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'pickup_location')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'destination_location')->textInput(['maxlength' => true]) ?>
     
     <?= $form->field($model, 'pickup_arrival_date')->widget(DatePicker::className(),[
         'dateFormat'=>'php:Y-m-d',
