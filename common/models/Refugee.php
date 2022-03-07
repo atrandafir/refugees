@@ -77,7 +77,7 @@ class Refugee extends \yii\db\ActiveRecord
             'pickup_location' => Yii::t('common.models.refugee', 'Pickup Location'),
             'destination_location' => Yii::t('common.models.refugee', 'Destination Location'),
             'special_needs' => Yii::t('common.models.refugee', 'Special Needs'),
-            'lang' => Yii::t('common.models.refugee', 'Lang'),
+            'lang' => Yii::t('common.models.refugee', 'Language'),
             'assigned_house_id' => Yii::t('common.models.refugee', 'House'),
             'assigned_trip_id' => Yii::t('common.models.refugee', 'Trip'),
             'created_at' => Yii::t('common.models.refugee', 'Created At'),
@@ -111,9 +111,9 @@ class Refugee extends \yii\db\ActiveRecord
     
     static public function getGenderList() {
         return [
-            self::GENDER_FEMALE=>'Female',
-            self::GENDER_MALE=>'Male',
-            self::GENDER_OTHER=>'Other',
+            self::GENDER_FEMALE=>Yii::t('common.models.refugee', 'Female'),
+            self::GENDER_MALE=>Yii::t('common.models.refugee', 'Male'),
+            self::GENDER_OTHER=>Yii::t('common.models.refugee', 'Other'),
         ];
     }
     

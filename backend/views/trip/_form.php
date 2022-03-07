@@ -32,7 +32,7 @@ use yii\jui\DatePicker;
         'clientOptions' => [
         
         ]
-    ]) ?>
+    ])->hint(Yii::t('back.trip', 'Expected date of arrival at the town where the assigned travelers will be picked up')) ?>
     <?= $form->field($model, 'destination_arrival_date')->widget(DatePicker::className(),[
         'dateFormat'=>'php:Y-m-d',
         'options'=>[
@@ -41,7 +41,7 @@ use yii\jui\DatePicker;
         'clientOptions' => [
         
         ]
-    ]) ?>
+    ])->hint(Yii::t('back.trip', 'Expected date of arrival at the destination town in Spain')) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('back.trip', 'Save'), ['class' => 'btn btn-success']) ?>

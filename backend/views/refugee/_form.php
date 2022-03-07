@@ -21,15 +21,15 @@ use common\models\Refugee;
 
     <?= $form->field($model, 'age')->textInput() ?>
 
-    <?= $form->field($model, 'gender')->dropDownList(Refugee::getGenderList(), ['prompt'=>'']) ?>
+    <?= $form->field($model, 'gender')->radioList(Refugee::getGenderList(), ['prompt'=>'']) ?>
 
     <?= $form->field($model, 'pickup_location')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'destination_location')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'special_needs')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'special_needs')->textarea(['rows' => 6])->hint(Yii::t('back.refugee', 'For example: needs for an illness that requires medication or treatment or a disability, etc.')) ?>
 
-    <?= $form->field($model, 'lang')->dropDownList(Yii::$app->params['languages'], ['prompt'=>''])->hint(Yii::t('back.vehicle', 'Chose the person\'s language for communications.')) ?>
+    <?= $form->field($model, 'lang')->dropDownList(Yii::$app->params['languages'], ['prompt'=>''])->hint(Yii::t('back.refugee', 'Chose the person\'s language for communications.')) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('back.refugee', 'Save'), ['class' => 'btn btn-success']) ?>
