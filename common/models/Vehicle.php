@@ -73,7 +73,7 @@ class Vehicle extends \yii\db\ActiveRecord
             'driver_name' => Yii::t('common.models.vehicle', 'Driver Name'),
             'driver_phone' => Yii::t('common.models.vehicle', 'Driver Phone'),
             'driver_document_number' => Yii::t('common.models.vehicle', 'Driver Document Number'),
-            'brand_model' => Yii::t('common.models.vehicle', 'Brand Model'),
+            'brand_model' => Yii::t('common.models.vehicle', 'Brand and Model'),
             'plate_number' => Yii::t('common.models.vehicle', 'Plate Number'),
             'capacity' => Yii::t('common.models.vehicle', 'Capacity'),
             'im_available' => Yii::t('common.models.vehicle', 'I\'m Available'),
