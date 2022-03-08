@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\House;
+use common\models\HouseGuest;
 use backend\models\HouseSearch;
 use common\components\MultiLingualController;
 use yii\web\NotFoundHttpException;
@@ -55,9 +56,27 @@ class HouseController extends MultiLingualController
      */
     public function actionView($id)
     {
+        
+        if (isset($_POST['add_refugee_id'])) {
+            HouseGuest::deleteAll(['house_id'=>$id,'refugee_id'=>$_POST['add_refugee_id']]);
+            $guest=new HouseGuest();
+            $guest->house_id=$id;
+            $guest->refugee_id=$_POST['add_refugee_id'];
+            $guest->save();
+            $this->refresh();
+        }
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+    
+    public function actionDeleteGuest($id, $house_id) {
+        $guest= HouseGuest::findOne($id);
+        if ($guest) {
+            $guest->delete();
+        }
+        $this->redirect(['view','id'=>$house_id]);
     }
 
     /**

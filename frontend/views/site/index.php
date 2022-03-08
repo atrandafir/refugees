@@ -26,7 +26,7 @@ $this->title = Yii::$app->name;
                     <?php echo Yii::t('front.index', 'Once you\'re on the list, you\'ll be contacted by a coordinator for further information about your future house and upcoming trip.'); ?>
                 </p>
 
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/doc/"><?php echo Yii::t('front.index', 'Add me now'); ?> &raquo;</a></p>
+                <p><a class="btn btn-primary" href="#"><?php echo Yii::t('front.index', 'Add me now'); ?> &raquo;</a></p>
             </div>
             <div class="col-lg-4">
                 <h2><?php echo Yii::t('front.index', 'Hosts'); ?></h2>
@@ -37,7 +37,7 @@ $this->title = Yii::$app->name;
                     <?php echo Yii::t('front.index', 'We will get in touch with you to coordinate the people that will come and stay at your place.'); ?>
                 </p>
 
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/forum/"><?php echo Yii::t('front.index', 'Add my house'); ?> &raquo;</a></p>
+                <p><a class="btn btn-primary" href="#"><?php echo Yii::t('front.index', 'Add my house'); ?> &raquo;</a></p>
             </div>
             <div class="col-lg-4">
                 <h2><?php echo Yii::t('front.index', 'Drivers'); ?></h2>
@@ -48,7 +48,7 @@ $this->title = Yii::$app->name;
                     <?php echo Yii::t('front.index', 'We will get in touch with you to plan together the trips details, pickup locations, passengers, etc.'); ?>
                 </p>
 
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/extensions/"><?php echo Yii::t('front.index', 'Add my vehicle'); ?> &raquo;</a></p>
+                <p><a class="btn btn-primary" href="#"><?php echo Yii::t('front.index', 'Add my vehicle'); ?> &raquo;</a></p>
             </div>
         </div>
 

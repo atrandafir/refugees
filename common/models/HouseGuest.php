@@ -72,4 +72,26 @@ class HouseGuest extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Refugee::className(), ['id' => 'refugee_id']);
     }
+    
+    public function afterSave($insert, $changedAttributes) {
+        parent::afterSave($insert, $changedAttributes);
+        
+        $refugee= Refugee::findOne($this->refugee_id);
+        if ($refugee) {
+            $refugee->assigned_house_id=$this->house_id;
+            $refugee->update(false, ['assigned_house_id']);
+        }
+        
+    }
+    
+    public function beforeDelete() {
+        if (parent::beforeDelete()) {
+            $refugee= Refugee::findOne($this->refugee_id);
+            if ($refugee) {
+                $refugee->assigned_house_id=NULL;
+                $refugee->update(false, ['assigned_house_id']);
+            }
+            return true;
+        }
+    }
 }

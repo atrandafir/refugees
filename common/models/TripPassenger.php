@@ -72,4 +72,26 @@ class TripPassenger extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Trip::className(), ['id' => 'trip_id']);
     }
+    
+    public function afterSave($insert, $changedAttributes) {
+        parent::afterSave($insert, $changedAttributes);
+        
+        $refugee= Refugee::findOne($this->refugee_id);
+        if ($refugee) {
+            $refugee->assigned_trip_id=$this->trip_id;
+            $refugee->update(false, ['assigned_trip_id']);
+        }
+        
+    }
+    
+    public function beforeDelete() {
+        if (parent::beforeDelete()) {
+            $refugee= Refugee::findOne($this->refugee_id);
+            if ($refugee) {
+                $refugee->assigned_trip_id=NULL;
+                $refugee->update(false, ['assigned_trip_id']);
+            }
+            return true;
+        }
+    }
 }

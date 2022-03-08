@@ -7,6 +7,7 @@ use backend\models\RefugeeSearch;
 use common\components\MultiLingualController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * RefugeeController implements the CRUD actions for Refugee model.
@@ -130,5 +131,39 @@ class RefugeeController extends MultiLingualController
         }
 
         throw new NotFoundHttpException(Yii::t('back.general', 'The requested page does not exist.'));
+    }
+    
+    public function actionSelect2($term = null) {
+        $result = [];
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $query = Refugee::find()
+                ->where([
+        ]);
+
+        if (!empty($term)) {
+            $query->andWhere('(name LIKE :term)', [
+                'term' => "%$term%",
+            ]);
+        }
+
+        $query->limit(100);
+
+        $models = $query->orderBy(['id' => SORT_ASC])
+                ->all();
+        
+        $result[] = [
+            'id' => '',
+            'text' => '-',
+        ];
+
+        foreach ($models as $model) {
+            $result[] = [
+                'id' => $model->id,
+                'text' => $model->name,
+            ];
+        }
+
+        return $result;
     }
 }

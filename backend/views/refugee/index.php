@@ -53,7 +53,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'destination_location',
             'special_needs:ntext',
             'lang',
-            'assigned_house_id',
+            [
+                'attribute' => 'assigned_house_id',
+                'format' => 'raw',
+                'value' => function(Refugee $model) {
+                    return $model->assignedHouse?$model->assignedHouse->getTitle():null;
+                }  
+            ],
             'assigned_trip_id',
             'created_at:datetime',
             //'updated_at',

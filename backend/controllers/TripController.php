@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Trip;
+use common\models\TripPassenger;
 use backend\models\TripSearch;
 use common\components\MultiLingualController;
 use yii\web\NotFoundHttpException;
@@ -55,9 +56,29 @@ class TripController extends MultiLingualController
      */
     public function actionView($id)
     {
+//        \yii\helpers\VarDumper::dump($_POST, 10, true); 
+//        die();
+        
+        if (isset($_POST['add_refugee_id'])) {
+            TripPassenger::deleteAll(['trip_id'=>$id,'refugee_id'=>$_POST['add_refugee_id']]);
+            $passenger=new TripPassenger();
+            $passenger->trip_id=$id;
+            $passenger->refugee_id=$_POST['add_refugee_id'];
+            $passenger->save();
+            $this->refresh();
+        }
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+    
+    public function actionDeletePassenger($id, $trip_id) {
+        $passenger= TripPassenger::findOne($id);
+        if ($passenger) {
+            $passenger->delete();
+        }
+        $this->redirect(['view','id'=>$trip_id]);
     }
 
     /**

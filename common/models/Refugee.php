@@ -27,6 +27,8 @@ use yii\behaviors\TimestampBehavior;
  * @property HouseGuest[] $houseGuests
  * @property TripPassenger[] $tripPassengers
  * @property User $user
+ * @property House $assignedHouse
+ * @property Trip $assignedTrip
  */
 class Refugee extends \yii\db\ActiveRecord
 {
@@ -116,6 +118,26 @@ class Refugee extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    
+    /**
+     * Gets query for [[House]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAssignedHouse()
+    {
+        return $this->hasOne(House::className(), ['id' => 'assigned_house_id']);
+    }
+    
+    /**
+     * Gets query for [[Trip]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAssignedTrip()
+    {
+        return $this->hasOne(Trip::className(), ['id' => 'assigned_trip_id']);
     }
     
     const GENDER_MALE=1;

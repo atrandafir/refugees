@@ -126,7 +126,7 @@ class UserController extends MultiLingualController {
         throw new NotFoundHttpException(Yii::t('back.general', 'The requested page does not exist.'));
     }
 
-    public function actionSelect2($term = null, $prefix = null) {
+    public function actionSelect2($term = null) {
         $result = [];
         \Yii::$app->response->format = Response::FORMAT_JSON;
 
