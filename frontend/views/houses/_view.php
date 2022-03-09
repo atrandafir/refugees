@@ -63,26 +63,28 @@ use common\models\HouseGuest;
     ?>
     <?php if ($guests): ?>
         <p class="text-center text-muted"><?php echo Yii::t('front.houses', 'Guests assigned to this house'); ?></p>
-        <?= GridView::widget([
-            'dataProvider' => $guestsDataProvider,
-            'layout'=>'{items}',
-            'filterModel' => null,
-            'columns' => [
-                'refugee.name',
-                'refugee.phone',
-                'refugee.age',
-                [
-                    'attribute'=>'refugee.gender',
-                    'value' => function(HouseGuest $model) {
-                        return $model->refugee->genderLabel;
-                    }
+        <div class="table-responsive">
+            <?= GridView::widget([
+                'dataProvider' => $guestsDataProvider,
+                'layout'=>'{items}',
+                'filterModel' => null,
+                'columns' => [
+                    'refugee.name',
+                    'refugee.phone',
+                    'refugee.age',
+                    [
+                        'attribute'=>'refugee.gender',
+                        'value' => function(HouseGuest $model) {
+                            return $model->refugee->genderLabel;
+                        }
+                    ],
+    //                'refugee.pickup_location',
+                    'refugee.destination_location',
+                    'refugee.special_needs:ntext',
+                    'refugee.lang',
                 ],
-//                'refugee.pickup_location',
-                'refugee.destination_location',
-                'refugee.special_needs:ntext',
-                'refugee.lang',
-            ],
-        ]); ?>
+            ]); ?>
+        </div>
     <?php else: ?>
         <p class="text-center text-muted"><?php echo Yii::t('front.houses', 'This house has no guests yet. Once the coordinator will assign the guests, you will able to see them here.'); ?></p>
     <?php endif; ?>

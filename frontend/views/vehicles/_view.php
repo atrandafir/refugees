@@ -70,26 +70,29 @@ use common\models\Vehicle;
         <?php foreach ($trips as $trip): ?>
         
             <h3><?php echo Yii::t('front.vehicles', 'Trip Number'); ?> #<?php echo $trip->id; ?></h3>
-            <table class="table table-striped table-bordered">
-                <thead>
-                   <tr>
-                      <th><?php echo $trip->getAttributeLabel('leaving_from'); ?></th>
-                      <th><?php echo $trip->getAttributeLabel('pickup_location'); ?></th>
-                      <th><?php echo $trip->getAttributeLabel('destination_location'); ?></th>
-                      <th><?php echo $trip->getAttributeLabel('pickup_arrival_date'); ?></th>
-                      <th><?php echo $trip->getAttributeLabel('destination_arrival_date'); ?></th>
-                   </tr>
-                </thead>
-                <tbody>
-                   <tr>
-                        <td><?php echo Html::encode($trip->leaving_from); ?></td>
-                        <td><?php echo Html::encode($trip->pickup_location); ?></td>
-                        <td><?php echo Html::encode($trip->destination_location); ?></td>
-                        <td><?php echo Yii::$app->formatter->asDate($trip->pickup_arrival_date); ?></td>
-                        <td><?php echo Yii::$app->formatter->asDate($trip->destination_arrival_date); ?></td>
-                   </tr>
-                </tbody>
-            </table>
+            
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                       <tr>
+                          <th><?php echo $trip->getAttributeLabel('leaving_from'); ?></th>
+                          <th><?php echo $trip->getAttributeLabel('pickup_location'); ?></th>
+                          <th><?php echo $trip->getAttributeLabel('destination_location'); ?></th>
+                          <th><?php echo $trip->getAttributeLabel('pickup_arrival_date'); ?></th>
+                          <th><?php echo $trip->getAttributeLabel('destination_arrival_date'); ?></th>
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr>
+                            <td><?php echo Html::encode($trip->leaving_from); ?></td>
+                            <td><?php echo Html::encode($trip->pickup_location); ?></td>
+                            <td><?php echo Html::encode($trip->destination_location); ?></td>
+                            <td><?php echo Yii::$app->formatter->asDate($trip->pickup_arrival_date); ?></td>
+                            <td><?php echo Yii::$app->formatter->asDate($trip->destination_arrival_date); ?></td>
+                       </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <?php
             $passengersDataProvider = new ActiveDataProvider([
@@ -107,6 +110,7 @@ use common\models\Vehicle;
                     <?php echo Yii::t('front.vehicles', 'Passengers'); ?>
                     <?php echo count($passengers); ?>/<?php echo $trip->vehicle?$trip->vehicle->capacity:0; ?>
                 </p>
+                <div class="table-responsive">
                 <?= GridView::widget([
                     'dataProvider' => $passengersDataProvider,
                     'filterModel' => null,
@@ -128,6 +132,7 @@ use common\models\Vehicle;
                         'refugee.lang',
                     ],
                 ]); ?>
+                </div>
             <?php else: ?>
                 <p class="text-center text-muted"><?php echo Yii::t('front.vehicles', 'This trip has no passengers yet'); ?></p>
             <?php endif; ?>
