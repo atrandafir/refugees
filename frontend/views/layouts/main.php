@@ -78,6 +78,22 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
+        
+        <?php
+        $browser_lang=Yii::$app->request->getPreferredLanguage(array_keys(Yii::$app->params['languages']));
+//        var_dump(LanguageHelper::percentageTranslationForLang($browser_lang));
+        ?>
+        
+        <?php if ($browser_lang && ($browser_lang!=Yii::$app->language) && LanguageHelper::percentageTranslationForLang($browser_lang)>=50): ?>
+        <div class="alert alert-primary" role="alert">
+            <?php echo Yii::t('front.general', 'This website is available in: {linkStart}{language}{linkEnd}', [
+                'linkStart'=>'<a href="'.Url::current(['lang'=>$browser_lang]).'" class="alert-link">',
+                'linkEnd'=>'</a>',
+                'language'=>Yii::$app->params['languages'][$browser_lang],
+            ]); ?>
+        </div>
+        <?php endif; ?>
+        
         <?= $content ?>
     </div>
 </main>
