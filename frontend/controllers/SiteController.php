@@ -91,7 +91,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->goBack(['//site/index']);
         }
 
         $model->password = '';
@@ -229,8 +229,8 @@ class SiteController extends Controller
             throw new BadRequestHttpException($e->getMessage());
         }
         if (($user = $model->verifyEmail()) && Yii::$app->user->login($user)) {
-            Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
-            return $this->redirect(['//site/index']);
+            Yii::$app->session->setFlash('success', Yii::t('front.signup', 'Your email has been confirmed!'));
+            return $this->goBack(['//site/index']);
         }
 
         Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');

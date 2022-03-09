@@ -34,7 +34,7 @@ class LoginForm extends Model
     
     public function attributeLabels(): array {
         return [
-            'username'=>Yii::t('front.login', 'Username'),
+            'username'=>Yii::t('front.login', 'Username or email'),
             'password'=>Yii::t('front.login', 'Password'),
             'rememberMe'=>Yii::t('front.login', 'Remember me'),
         ];
@@ -80,6 +80,9 @@ class LoginForm extends Model
     {
         if ($this->_user === null) {
             $this->_user = User::findByUsername($this->username);
+        }
+        if ($this->_user === null) {
+            $this->_user = User::findByEmail($this->username);
         }
 
         return $this->_user;
