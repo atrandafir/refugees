@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model common\models\Vehicle */
 
 $this->title = Yii::t('front.vehicles', 'Modify vehicle');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('front.vehicles', 'Vehicles'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('front.vehicles', 'Drivers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
