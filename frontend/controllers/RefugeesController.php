@@ -44,6 +44,7 @@ class RefugeesController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                Yii::$app->session->setFlash('success', Yii::t('front.refugees', 'Information added correctly.'));
                 return $this->redirect(['index']);
             }
         } else {
@@ -60,6 +61,7 @@ class RefugeesController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('front.refugees', 'Information updated correctly.'));
             return $this->redirect(['index']);
         }
 

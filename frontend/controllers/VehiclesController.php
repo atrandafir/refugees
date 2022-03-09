@@ -44,6 +44,7 @@ class VehiclesController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                Yii::$app->session->setFlash('success', Yii::t('front.vehicles', 'Thank you for adding your vehicle.'));
                 return $this->redirect(['index']);
             }
         } else {
@@ -60,6 +61,7 @@ class VehiclesController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('front.vehicles', 'Vehicle details have been updated.'));
             return $this->redirect(['index']);
         }
 

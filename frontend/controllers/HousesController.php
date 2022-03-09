@@ -44,6 +44,7 @@ class HousesController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                Yii::$app->session->setFlash('success', Yii::t('front.houses', 'Thank you for adding your house.'));
                 return $this->redirect(['index']);
             }
         } else {
@@ -60,6 +61,7 @@ class HousesController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('front.houses', 'House details have been updated.'));
             return $this->redirect(['index']);
         }
 
