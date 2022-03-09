@@ -16,6 +16,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-5">
+            
+            <p>
+                <?php echo Yii::t('front.login', 'Don\'t have an user account yet? {linkStart}Sign up here{linkEnd}', [
+                    'linkStart'=>'<a href="'.Url::to(['site/signup']).'" class="btn btn-primary">',
+                    'linkEnd'=>'</a>',
+                ]); ?>
+            </p>
+            
             <?php $form = ActiveForm::begin([
                 'id' => 'login-form',
                 'enableClientValidation' => false,
@@ -45,12 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php ActiveForm::end(); ?>
             
-            <p>
-                <?php echo Yii::t('front.login', 'Don\'t have an user account yet? {linkStart}Sign up here{linkEnd}', [
-                    'linkStart'=>'<a href="'.Url::to(['site/signup']).'">',
-                    'linkEnd'=>'</a>',
-                ]); ?>
-            </p>
+            
             
         </div>
     </div>
