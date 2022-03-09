@@ -11,7 +11,7 @@ use common\models\User;
  */
 class SignupForm extends Model
 {
-    public $username;
+    //public $username;
     public $email;
     public $password;
     public $lang;
@@ -23,10 +23,12 @@ class SignupForm extends Model
     public function rules()
     {
         return [
+            
+            /*
             ['username', 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => Yii::t('front.signup', 'This username has already been taken.')],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'string', 'min' => 2, 'max' => 255],*/
 
             ['email', 'trim'],
             ['email', 'required'],
@@ -43,7 +45,7 @@ class SignupForm extends Model
     
     public function attributeLabels(): array {
         return [
-            'username'=>Yii::t('front.signup', 'Username'),
+            //'username'=>Yii::t('front.signup', 'Username'),
             'email'=>Yii::t('front.signup', 'Email'),
             'password'=>Yii::t('front.signup', 'Password'),
             'lang'=>Yii::t('front.signup', 'Language'),
@@ -62,7 +64,7 @@ class SignupForm extends Model
         }
         
         $user = new User();
-        $user->username = $this->username;
+        $user->username = $this->email;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
