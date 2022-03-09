@@ -47,6 +47,7 @@ AppAsset::register($this);
     } else {
         $menuItems[] = ['label' => Yii::t('front.menu', 'Refugees'), 'url' => ['/refugees/index']];
         $menuItems[] = ['label' => Yii::t('front.menu', 'Hosts'), 'url' => ['/houses/index']];
+        $menuItems[] = ['label' => Yii::t('front.menu', 'Drivers'), 'url' => ['/vehicles/index']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
             . Html::submitButton(
