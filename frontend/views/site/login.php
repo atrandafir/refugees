@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
             <p>
                 <?php echo Yii::t('front.login', 'Don\'t have an user account yet? {linkStart}Sign up here{linkEnd}', [
-                    'linkStart'=>'<a href="'.Url::to(['site/signup']).'" class="btn btn-primary">',
+                    'linkStart'=>'<a href="'.Url::to(['site/signup']).'" class="btn btn-secondary btn-sm">',
                     'linkEnd'=>'</a>',
                 ]); ?>
             </p>
