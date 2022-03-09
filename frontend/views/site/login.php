@@ -16,7 +16,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+            <?php $form = ActiveForm::begin([
+                'id' => 'login-form',
+                'enableClientValidation' => false,
+                ]); ?>
 
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
