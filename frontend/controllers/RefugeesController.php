@@ -5,6 +5,8 @@ namespace frontend\controllers;
 use Yii;
 use common\components\MultiLingualController as Controller;
 use yii\filters\AccessControl;
+use common\models\Refugee;
+use yii\web\NotFoundHttpException;
 
 class RefugeesController extends Controller
 {
@@ -26,28 +28,62 @@ class RefugeesController extends Controller
         ];
     }
 
-    // list all, mine
     public function actionIndex()
     {
-        return $this->render('index');
+        $models=Refugee::find()->where([
+            'user_id'=>Yii::$app->user->id,
+        ])->all();
+        return $this->render('index', compact('models'));
     }
 
-    // add new
     public function actionNew()
     {
-        return $this->render('new');
+        $model = new Refugee();
+        $model->user_id=Yii::$app->user->id;
+        $model->lang=Yii::$app->language;
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('new', [
+            'model' => $model,
+        ]);
     }
 
-    // edit, check it is mine
-    public function actionUpdate()
+    public function actionUpdate($id)
     {
-        return $this->render('index');
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
-    // delete
-    public function actionDelete()
+    public function actionDelete($id)
     {
-        return $this->render('index');
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+    
+    protected function findModel($id)
+    {
+        $model = Refugee::findOne(['id' => $id]);
+        
+        if ($model && $model->user_id==Yii::$app->user->id) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException(Yii::t('front.general', 'The requested page does not exist.'));
     }
 
 }

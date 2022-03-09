@@ -85,7 +85,7 @@ class Refugee extends \yii\db\ActiveRecord
             'lang' => Yii::t('common.models.refugee', 'Language'),
             'assigned_house_id' => Yii::t('common.models.refugee', 'House'),
             'assigned_trip_id' => Yii::t('common.models.refugee', 'Trip'),
-            'created_at' => Yii::t('common.models.refugee', 'Created At'),
+            'created_at' => Yii::t('common.models.refugee', 'Creation date'),
             'updated_at' => Yii::t('common.models.refugee', 'Updated At'),
         ];
     }

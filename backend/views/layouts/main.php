@@ -74,6 +74,10 @@ AppAsset::register($this);
 <main role="main" class="flex-shrink-0">
     <div class="container">
         <?= Breadcrumbs::widget([
+            'homeLink'=>[
+                'label' => Yii::t('back.menu', 'Home'),
+                'url' => ['//site/index'],
+            ],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
