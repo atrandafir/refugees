@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model common\models\House */
 
 $this->title = Yii::t('front.houses', 'New house');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('front.houses', 'Houses'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('front.houses', 'Hosts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
