@@ -8,6 +8,7 @@ use backend\models\HouseSearch;
 use common\components\MultiLingualController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * HouseController implements the CRUD actions for House model.
@@ -22,6 +23,15 @@ class HouseController extends MultiLingualController
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
