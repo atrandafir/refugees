@@ -39,7 +39,7 @@ $this->title = Yii::$app->name;
                     <?php echo Yii::t('front.index', 'We will get in touch with you to coordinate the people that will come and stay at your place.'); ?>
                 </p>
 
-                <p><a class="btn btn-primary" href="<?php echo Url::to(['hosts/new']); ?>"><?php echo Yii::t('front.index', 'Add my house'); ?> &raquo;</a></p>
+                <p><a class="btn btn-primary" href="<?php echo Url::to(['houses/new']); ?>"><?php echo Yii::t('front.index', 'Add my house'); ?> &raquo;</a></p>
             </div>
             <div class="col-lg-4">
                 <h2><?php echo Yii::t('front.index', 'Drivers'); ?></h2>
@@ -50,7 +50,7 @@ $this->title = Yii::$app->name;
                     <?php echo Yii::t('front.index', 'We will get in touch with you to plan together the trips details, pickup locations, passengers, etc.'); ?>
                 </p>
 
-                <p><a class="btn btn-primary" href="<?php echo Url::to(['drivers/new']); ?>"><?php echo Yii::t('front.index', 'Add my vehicle'); ?> &raquo;</a></p>
+                <p><a class="btn btn-primary" href="<?php echo Url::to(['vehicles/new']); ?>"><?php echo Yii::t('front.index', 'Add my vehicle'); ?> &raquo;</a></p>
             </div>
         </div>
 

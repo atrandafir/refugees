@@ -106,6 +106,6 @@ class House extends \yii\db\ActiveRecord
     }
     
     public function getTitle() {
-        return $this->host_name;
+        return $this->host_name . " - " . $this->city;
     }
 }

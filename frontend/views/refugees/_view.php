@@ -16,9 +16,9 @@ use common\models\Refugee;
         </div>
         <div class="col-sm-6">
             <p class="float-sm-right">
-                <?= Html::a(Yii::t('front.general', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
+                <?= Html::a(Yii::t('front.general', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-sm btn-secondary']) ?>
                 <?= Html::a(Yii::t('front.general', 'Delete'), ['delete', 'id' => $model->id], [
-                    'class' => 'btn btn-danger',
+                    'class' => 'btn btn-sm btn-danger',
                     'data' => [
                         'confirm' => Yii::t('front.general', 'Are you sure you want to delete this item?'),
                         'method' => 'post',
@@ -29,6 +29,9 @@ use common\models\Refugee;
     </div>
 
     <?= DetailView::widget([
+        'options'=>[
+            'class' => 'table table-striped table-bordered detail-view table-sm'
+        ],
         'model' => $model,
         'attributes' => [
 //            'id',
