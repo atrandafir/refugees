@@ -16,5 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?php echo Yii::t('front.about', 'The code of this website is open source and can be found at: '); ?> <a href="https://github.com/atrandafir/refugees">Github</a>
     </p>
+    <p>
+        <?php echo Yii::t('front.about', 'If you want to collaborate or provide some feedback to improve the platform please reach out.'); ?>
+    </p>
 
 </div>
