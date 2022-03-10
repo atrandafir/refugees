@@ -1,7 +1,7 @@
 {
-    "name": "yiisoft/yii2-app-advanced",
-    "description": "Yii 2 Advanced Project Template",
-    "keywords": ["yii2", "framework", "advanced", "project template"],
+    "name": "atrandafir/refugees",
+    "description": "Ukraine to Spain travel and accomodation coordination platform",
+    "keywords": ["ukraine", "travel", "accomodation", "platform", "civic hacking"],
     "homepage": "http://www.yiiframework.com/",
     "type": "project",
     "license": "BSD-3-Clause",

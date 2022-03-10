@@ -83,6 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </h2>
     
     <?php if ($passengers): ?>
+        <div class="table-responsive">
         <?= GridView::widget([
             'dataProvider' => $passengersDataProvider,
             'filterModel' => null,
@@ -113,6 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
         ]); ?>
+        </div>
     <?php else: ?>
         <p class="text-center text-muted"><?php echo Yii::t('back.trip', 'This trip has no passengers yet'); ?></p>
     <?php endif; ?>

@@ -79,6 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </h2>
     
     <?php if ($guests): ?>
+        <div class="table-responsive">
         <?= GridView::widget([
             'dataProvider' => $guestsDataProvider,
             'filterModel' => null,
@@ -109,6 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
         ]); ?>
+        </div>
     <?php else: ?>
         <p class="text-center text-muted"><?php echo Yii::t('back.house', 'This house has no guests yet'); ?></p>
     <?php endif; ?>
